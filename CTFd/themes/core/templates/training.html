@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container pt-4" >
+
+  <div class="row justify-content-center" style="padding-top: 15px; padding-bottom: 15px; " >
+    <div class="col" >
+      <h2> <strong>Retos</strong> del entrenamiento </h2>
+    </div>
+    <div class="col-md-auto" >
+      
+    </div>
+    <div class="col col-lg-3" >
+      <h2> <strong>Puntaje:</strong> <span class="badge badge-secondary" id="score" > 0 </span> </h2>
+    </div>
+  </div>
+  
+  <div class="alert alert-primary" role="alert">
+    Este es el entrenamiento de CTF de la <strong>Universidad Católica Boliviana "San Pablo"</strong> 
+  </div>
+
+  <div class="accordion" id="accordionTraining">
+  </div>
+</div>
+
+{% endblock %}
+
+{% block entrypoint %}
+	<script defer src="{{ url_for('views.themes', path='js/pages/training.js') }}"></script>
+{% endblock %}

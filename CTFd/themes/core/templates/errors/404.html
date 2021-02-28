@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container" style="padding-top: 1%;" >
+	<!-- <div class="row">
+		<div class="col-md-12">
+			<div class="pt-5 mt-5 text-center">
+				<h1>404</h1>
+				<hr class="w-50">
+				<h2>File not found</h2>
+				<h2>Sorry about that</h2>
+			</div>
+		</div>
+	</div> -->
+
+	<div class="card-columns"  id="news" >
+
+	</div>
+	
+</div>
+
+<script defer src="{{ url_for('views.themes', path='js/pages/404.js') }}"></script>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
