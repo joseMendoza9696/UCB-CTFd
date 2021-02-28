@@ -94,5 +94,5 @@ OAUTH_CLIENT_SECRET = None
 - Recomiendo cambiar el frontend del proyecto a react js.
 - Los siguientes administradores pueden hacer un Fork y contribuir con las caracteristicas que necesiten.
 - Si veo que la comunidad crece en este proyecto, voy tratar de aportar con mi conocimiento en mis tiempos libres.
-- El proyecto tiene licencia apache2.0. Recomiendo leer muy bien los términos y condiciones de la licencia antes
+- El proyecto tiene licencia Apache2.0. Recomiendo leer muy bien los términos y condiciones de la licencia antes
   de quitar algún CopyRight del software.
