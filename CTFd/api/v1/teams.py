@@ -332,10 +332,7 @@ class TeamMembers(Resource):
         data = request.get_json()
         user_id = data["user_id"]
         user = Users.query.filter_by(id=user_id).first_or_404()
-        if user.team_id is None:
-            team.members.append(user)
-            db.session.commit()
-        else:
+        if user.team_id is not None:
             return (
                 {
                     "success": False,
@@ -344,6 +341,9 @@ class TeamMembers(Resource):
                 400,
             )
 
+        team.members.append(user)
+        db.session.commit()        
+        
         view = "admin" if is_admin() else "user"
         schema = TeamSchema(view=view)
         response = schema.dump(team)
@@ -363,21 +363,21 @@ class TeamMembers(Resource):
         user_id = data["user_id"]
         user = Users.query.filter_by(id=user_id).first_or_404()
 
-        if user.team_id == team.id:
-            team.members.remove(user)
-
-            # Remove information that links the user to the team
-            Submissions.query.filter_by(user_id=user.id).delete()
-            Awards.query.filter_by(user_id=user.id).delete()
-            Unlocks.query.filter_by(user_id=user.id).delete()
-
-            db.session.commit()
-        else:
+        if user.team_id != team.id:
             return (
                 {"success": False, "errors": {"id": ["User is not part of this team"]}},
                 400,
             )
+        
+        team.members.remove(user)
 
+        # Remove information that links the user to the team
+        Submissions.query.filter_by(user_id=user.id).delete()
+        Awards.query.filter_by(user_id=user.id).delete()
+        Unlocks.query.filter_by(user_id=user.id).delete()
+
+        db.session.commit()
+        
         view = "admin" if is_admin() else "user"
         schema = TeamSchema(view=view)
         response = schema.dump(team)
